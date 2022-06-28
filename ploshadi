@@ -1,0 +1,318 @@
+unit Unit1;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
+  Menus;
+
+type
+
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    Ploshad_Romba: TButton;
+    Ploshad_Treugolnika: TButton;
+    Ploshad_Kvadrata: TButton;
+    Clean3: TButton;
+    Clean2: TButton;
+    Clean1: TButton;
+    Pole_Ploshadi3: TEdit;
+    Pole_Ploshadi2: TEdit;
+    Kvadrat: TRadioButton;
+    Romb_D1: TEdit;
+    Romb_D: TEdit;
+    Romb_D11: TLabel;
+    Romb_D12: TLabel;
+    Romb: TRadioButton;
+    Forma_Treugolnika: TShape;
+    Forma_Romba: TShape;
+    Forma_Kvadrata: TShape;
+    Treugolnik_B: TEdit;
+    Treugolnik_H: TEdit;
+    Kvadrat_A: TEdit;
+    Kvadrat_A1: TLabel;
+    Treugolnik_B1: TLabel;
+    Treugolnik_H1: TLabel;
+    Pole_Ploshadi1: TEdit;
+    Treugolnik: TRadioButton;
+    procedure Forma_RombaChangeBounds(Sender: TObject);
+    procedure Forma_TreugolnikaChangeBounds(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Kvadrat_AKeyPress(Sender: TObject; var Key: char);
+    procedure Ploshad_RombaClick(Sender: TObject);
+    procedure Ploshad_TreugolnikaClick(Sender: TObject);
+    procedure Ploshad_KvadrataClick(Sender: TObject);
+    procedure Clean2Click(Sender: TObject);
+    procedure Clean3Click(Sender: TObject);
+    procedure Clean1Click(Sender: TObject);
+    procedure Kvadrat_AChange(Sender: TObject);
+    procedure Kvadrat_A1Click(Sender: TObject);
+    procedure Ploshad_KvadrataChange(Sender: TObject);
+    procedure Ploshad_RombaChange(Sender: TObject);
+    procedure Ploshad_TreugolnikaChange(Sender: TObject);
+    procedure Pole_Ploshadi1Change(Sender: TObject);
+    procedure RadioButton1Change(Sender: TObject);
+    procedure KvadratChange(Sender: TObject);
+    procedure RombChange(Sender: TObject);
+    procedure Romb_D1KeyPress(Sender: TObject; var Key: char);
+    procedure Romb_DKeyPress(Sender: TObject; var Key: char);
+    procedure TreugolnikChange(Sender: TObject);
+    procedure Treugolnik_BChange(Sender: TObject);
+    procedure Treugolnik_BKeyPress(Sender: TObject; var Key: char);
+    procedure Treugolnik_HKeyPress(Sender: TObject; var Key: char);
+  private
+
+  public
+
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.lfm}
+
+{ TForm1 }
+
+procedure TForm1.Ploshad_KvadrataChange(Sender: TObject);
+var a,s:real;
+begin
+  a:=StrToFloat(Kvadrat_A.Text);
+  s:=a*a;
+  Pole_Ploshadi1.Text:=FloatToStr(s);
+end;
+
+procedure TForm1.KvadratChange(Sender: TObject);
+begin
+  Ploshad_Kvadrata.Visible:=True;
+  Ploshad_Treugolnika.Visible:=False;
+  Ploshad_Romba.Visible:=False;
+  Kvadrat_A.Visible:=True;
+  Treugolnik_B.Visible:=False;
+  Treugolnik_H.Visible:=False;
+  Romb_D.Visible:=False;
+  Romb_D1.Visible:=False;
+  Kvadrat_A1.Visible:=True;
+  Treugolnik_B1.Visible:=False;
+  Treugolnik_H1.Visible:=False;
+  Romb_D11.Visible:=False;
+  Romb_D12.Visible:=False;
+  Forma_Kvadrata.Visible:=True;
+  Forma_Treugolnika.Visible:=False;
+  Forma_Romba.Visible:=False;
+  Pole_Ploshadi1.Visible:=True;
+  Pole_Ploshadi2.Visible:=False;
+  Pole_Ploshadi3.Visible:=False;
+  Clean1.Visible:=True;
+  Clean2.Visible:=False;
+  Clean3.Visible:=False;
+end;
+
+procedure TForm1.Kvadrat_AChange(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Kvadrat_A1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Clean1Click(Sender: TObject);
+begin
+  Pole_Ploshadi1.Text:='';
+  Kvadrat_A.Text:='';
+end;
+
+procedure TForm1.Clean3Click(Sender: TObject);
+begin
+  Pole_Ploshadi3.Text:='';
+  Romb_D.Text:='';
+  Romb_D1.Text:='';
+end;
+
+procedure TForm1.Clean2Click(Sender: TObject);
+begin
+  Pole_Ploshadi2.Text:='';
+  Treugolnik_B.Text:='';
+  Treugolnik_H.Text:='';
+end;
+
+procedure TForm1.Ploshad_KvadrataClick(Sender: TObject);
+var a,s:real;
+begin
+  a:=StrToFloat(Kvadrat_A.Text);
+  s:=a*a;
+  Pole_Ploshadi1.Text:=FloatToStr(s);
+end;
+
+procedure TForm1.Ploshad_TreugolnikaClick(Sender: TObject);
+var b,h,s:real;
+begin
+  b:=StrToFloat(Treugolnik_B.Text);
+  h:=StrToFloat(Treugolnik_H.Text);
+  s:=1/2*b*h;
+  Pole_Ploshadi2.Text:=FloatToStr(s);
+end;
+
+procedure TForm1.Ploshad_RombaClick(Sender: TObject);
+var d,d1,s:real;
+begin
+  d:=StrToFloat(Romb_D.Text);
+  d1:=StrToFloat(Romb_D1.Text);
+  s:=1/2*d*d1;
+  Pole_Ploshadi3.Text:=FloatToStr(s);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Kvadrat_AKeyPress(Sender: TObject; var Key: char);
+begin
+  Kvadrat_A.ReadOnly:=not (key in ['0'..'9',#8]);
+end;
+
+procedure TForm1.Forma_TreugolnikaChangeBounds(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Forma_RombaChangeBounds(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Ploshad_RombaChange(Sender: TObject);
+var d,d1,s:real;
+begin
+  d:=StrToFloat(Romb_D.Text);
+  d1:=StrToFloat(Romb_D1.Text);
+  s:=1/2*d*d1;
+  Pole_Ploshadi3.Text:=FloatToStr(s);
+end;
+
+procedure TForm1.Ploshad_TreugolnikaChange(Sender: TObject);
+var b,h,s:real;
+begin
+  b:=StrToFloat(Treugolnik_B.Text);
+  h:=StrToFloat(Treugolnik_H.Text);
+  s:=1/2*b*h;
+  Pole_Ploshadi2.Text:=FloatToStr(s);
+end;
+
+procedure TForm1.Pole_Ploshadi1Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.RadioButton1Change(Sender: TObject);
+begin
+  Ploshad_Kvadrata.Visible:=True;
+  Ploshad_Treugolnika.Visible:=False;
+  Ploshad_Romba.Visible:=False;
+  Kvadrat_A.Visible:=True;
+  Treugolnik_B.Visible:=False;
+  Treugolnik_H.Visible:=False;
+  Romb_D.Visible:=False;
+  Romb_D1.Visible:=False;
+  Kvadrat_A1.Visible:=True;
+  Treugolnik_B1.Visible:=False;
+  Treugolnik_H1.Visible:=False;
+  Romb_D11.Visible:=False;
+  Romb_D12.Visible:=False;
+  Forma_Kvadrata.Visible:=True;
+  Forma_Treugolnika.Visible:=False;
+  Forma_Romba.Visible:=False;
+  Pole_Ploshadi1.Visible:=True;
+  Pole_Ploshadi2.Visible:=False;
+  Pole_Ploshadi3.Visible:=False;
+  Clean1.Visible:=True;
+  Clean2.Visible:=False;
+  Clean3.Visible:=False;
+end;
+
+procedure TForm1.RombChange(Sender: TObject);
+begin
+  Ploshad_Kvadrata.Visible:=False;
+  Ploshad_Treugolnika.Visible:=False;
+  Ploshad_Romba.Visible:=True;
+  Kvadrat_A.Visible:=False;
+  Treugolnik_B.Visible:=False;
+  Treugolnik_H.Visible:=False;
+  Romb_D.Visible:=True;
+  Romb_D1.Visible:=True;
+  Kvadrat_A1.Visible:=False;
+  Treugolnik_B1.Visible:=False;
+  Treugolnik_H1.Visible:=False;
+  Romb_D11.Visible:=True;
+  Romb_D12.Visible:=True;
+  Forma_Kvadrata.Visible:=False;
+  Forma_Treugolnika.Visible:=False;
+  Forma_Romba.Visible:=True;
+  Pole_Ploshadi1.Visible:=False;
+  Pole_Ploshadi2.Visible:=False;
+  Pole_Ploshadi3.Visible:=True;
+  Clean1.Visible:=False;
+  Clean2.Visible:=False;
+  Clean3.Visible:=True;
+end;
+
+procedure TForm1.Romb_D1KeyPress(Sender: TObject; var Key: char);
+begin
+  Romb_D1.ReadOnly:=not (key in ['0'..'9',#8]);
+end;
+
+procedure TForm1.Romb_DKeyPress(Sender: TObject; var Key: char);
+begin
+  Romb_D.ReadOnly:=not (key in ['0'..'9',#8]);
+end;
+
+procedure TForm1.TreugolnikChange(Sender: TObject);
+begin
+  Ploshad_Kvadrata.Visible:=False;
+  Ploshad_Treugolnika.Visible:=True;
+  Ploshad_Romba.Visible:=False;
+  Kvadrat_A.Visible:=False;
+  Treugolnik_B.Visible:=True;
+  Treugolnik_H.Visible:=True;
+  Romb_D.Visible:=False;
+  Romb_D1.Visible:=False;
+  Kvadrat_A1.Visible:=False;
+  Treugolnik_B1.Visible:=True;
+  Treugolnik_H1.Visible:=True;
+  Romb_D11.Visible:=False;
+  Romb_D12.Visible:=False;
+  Forma_Kvadrata.Visible:=False;
+  Forma_Treugolnika.Visible:=True;
+  Forma_Romba.Visible:=False;
+  Pole_Ploshadi1.Visible:=False;
+  Pole_Ploshadi2.Visible:=True;
+  Pole_Ploshadi3.Visible:=False;
+  Clean1.Visible:=False;
+  Clean2.Visible:=True;
+  Clean3.Visible:=False;
+end;
+
+procedure TForm1.Treugolnik_BChange(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Treugolnik_BKeyPress(Sender: TObject; var Key: char);
+begin
+  Treugolnik_B.ReadOnly:=not (key in ['0'..'9',#8]);
+end;
+
+procedure TForm1.Treugolnik_HKeyPress(Sender: TObject; var Key: char);
+begin
+  Treugolnik_H.ReadOnly:=not (key in ['0'..'9',#8]);
+end;
+
+end.
+                   
